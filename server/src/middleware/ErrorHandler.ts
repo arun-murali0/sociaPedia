@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
- 
+
+
+//  error handler for custom error code and error message setting as prototype
 export class customError extends Error {
   errorMessage: string;
   errorCode: number;
@@ -16,6 +18,7 @@ export class customError extends Error {
   }
 }
 
+// error handler as global module
 export const errorHandlers = (
   error: any,
   req: Request,
