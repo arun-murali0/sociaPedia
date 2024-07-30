@@ -4,6 +4,7 @@ import { Strategy } from 'passport-local';
 import { User } from '../models/user';
 import { customError } from '../middleware/ErrorHandler';
 import { IID } from '../utils/types/User.types';
+import { comparePassword } from '../utils/bcrypt';
 
 passport.serializeUser((user: IID, done: DoneCallback) => {
   done(null, user._id);
@@ -34,7 +35,9 @@ passport.use(
         if (!user) {
           throw new customError('user Not Found', 400);
         }
-        if (user.password !== password) {
+        const match = await comparePassword(password, user.password);
+
+        if (!match) {
           throw new customError('password Mismatch', 400);
         }
         done(null, user);
