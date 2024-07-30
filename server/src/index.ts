@@ -1,18 +1,19 @@
 import Express from 'express';
+import Routes from './routes/index';
+import { errorHandlers } from './middleware/ErrorHandler';
 
+import { PORT } from './config';
 
-
-import dotenv from 'dotenv';
-dotenv.config();
 const app = Express();
-const PORT = process.env.PORT || 3030;
 
+// middleware
+app.use(Express.json());
+app.use(Express.urlencoded({ extended: true }));
 
-
-app.get('/home', (req, res) => {
-  res.json('Home');
-});
+app.use('/', Routes);
 
 app.listen(PORT, () => {
   console.log(`server running in http://localhost:${PORT}`);
 });
+
+app.use(errorHandlers);
