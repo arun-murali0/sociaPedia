@@ -1,6 +1,5 @@
 import { Router } from 'express';
-import { createNewUser } from '../../controller/auth/createNewUser';
-import { userLogin } from '../../controller/auth/userLogin';
+import { createNewUser, userLogin } from '../../controller';
 import passport from 'passport';
 import '../../passport-strategy/local-strategy';
 

@@ -31,7 +31,6 @@ passport.use(
     async (req: Request, email: string, password: string, done: any) => {
       try {
         const user = await User.findOne({ email: email }).exec();
-        console.log(user);
         if (!user) {
           throw new customError('user Not Found', 400);
         }
