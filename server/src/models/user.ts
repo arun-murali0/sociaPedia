@@ -7,8 +7,8 @@ const userSchema: Schema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   username: { type: String },
-  createdAt: Date.now(),
-  updatedAt: Date.now(),
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 export const User = mongoose.model<IUser>('User', userSchema);

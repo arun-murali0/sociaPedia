@@ -1,14 +1,17 @@
 import mongoose from 'mongoose';
 
+interface IID {
+  _id?: mongoose.Types.ObjectId;
+}
+
 interface IUser {
-  _id?: string;
   firstname: string;
   lastname: string;
   email: string;
   username: string;
   password: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date | number;
+  updatedAt: Date | number;
 }
 
-export { IUser };
+export { IUser,IID };

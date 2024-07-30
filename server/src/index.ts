@@ -1,15 +1,36 @@
 import Express from 'express';
 import Routes from './routes/index';
+import session from 'express-session';
+import passport from 'passport';
+import cors from 'cors';
 import { customError, errorHandlers } from './middleware/ErrorHandler';
 
-import { PORT } from './config';
+import { PORT, SECRET } from './config';
 import { db } from './db';
+import helmet from 'helmet';
 
 const app = Express();
 
 // middleware
+app.use(cors());
+app.use(helmet());
 app.use(Express.json());
 app.use(Express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: SECRET || '',
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 60 * 60 * 24,
+      httpOnly: true,
+    },
+  })
+);
+
+// passport config
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', Routes);
 
@@ -19,8 +40,9 @@ db()
       console.log(`server running in http://localhost:${PORT}`);
     });
   })
-  .catch((error:any) => {
+  .catch((error: any) => {
     throw new customError(error.message, error.statusCode);
   });
 
+// error handler
 app.use(errorHandlers);
