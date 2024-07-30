@@ -3,9 +3,10 @@ import Routes from './routes/index';
 import session from 'express-session';
 import passport from 'passport';
 import cors from 'cors';
+import mongoStore from 'connect-mongo';
 import { customError, errorHandlers } from './middleware/ErrorHandler';
 
-import { PORT, SECRET } from './config';
+import { PORT, SECRET, MONGO_STRING } from './config';
 import { db } from './db';
 import helmet from 'helmet';
 
@@ -25,6 +26,9 @@ app.use(
       maxAge: 60 * 60 * 24,
       httpOnly: true,
     },
+    store: mongoStore.create({
+      mongoUrl: MONGO_STRING,
+    }),
   })
 );
 
