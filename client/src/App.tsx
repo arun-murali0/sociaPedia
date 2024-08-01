@@ -1,8 +1,8 @@
-import Home from './view/Home';
+import { Home } from './pages/index';
 
 export default function App() {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <Home />
     </div>
   );
