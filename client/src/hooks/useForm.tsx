@@ -30,6 +30,6 @@ export const useMultiForm = (steps: ReactElement[]) => {
     currentStep: steps[currentStepIndex],
     steps,
     isFirst: currentStepIndex === 0,
-    isLast: currentStepIndex === steps.length,
+    isLast: currentStepIndex === steps.length - 1,
   };
 };

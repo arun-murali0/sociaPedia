@@ -33,14 +33,29 @@ export default function Register() {
             <div>{currentStep}</div>
             <div className='my-5 text-right'>
               {isFirst ? null : (
-                <Button classname='border px-5 mx-2' onClick={prev}>
+                <Button
+                  classname='border-black px-5 py-1 mx-2 bg-black text-white'
+                  onClick={prev}
+                >
                   Prev
                 </Button>
               )}
-
-              <Button type='button' classname='px-5 border' onClick={next}>
-                {isLast ? 'Sign Up' : 'Next'}
-              </Button>
+              {isLast ? (
+                <Button
+                  type='button'
+                  classname='px-5 border-black py-1 bg-black text-white'
+                >
+                  Submit
+                </Button>
+              ) : (
+                <Button
+                  type='button'
+                  classname='px-5 border-black py-1 bg-black text-white'
+                  onClick={next}
+                >
+                  Next
+                </Button>
+              )}
             </div>
             <div className='text-center'>
               Already Registered?

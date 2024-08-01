@@ -7,15 +7,15 @@ export default function FormThree() {
       </div>
       <div className='my-2'>
         <label htmlFor='gender'>Gender</label>
-        <option>
-          <select>Male</select>
-          <select>Female</select>
-          <select>Others</select>
-        </option>
+        <select className='w-full border p-1'>
+          <option>Male</option>
+          <option>Female</option>
+          <option>others</option>
+        </select>
       </div>
       <div className='my-2'>
         <label htmlFor='profile'>profile</label>
-        <input type='File' id='profile' />
+        <input type='File' id='profile' className='my-2' />
       </div>
     </section>
   );
