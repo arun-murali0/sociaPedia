@@ -8,6 +8,7 @@ export default {
       grey: '#f7f7f7',
       purple: '#b084cc',
       green: '#44cf6c',
+      blue: '#0000FF',
     },
     fontSize: {
       smallFont: '14px',

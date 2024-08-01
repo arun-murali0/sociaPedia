@@ -1,13 +1,16 @@
 import { Button, Card } from '../../components';
+import { Link } from 'react-router-dom';
 
 // login
 export default function Login() {
   return (
-    <section className='max-w-5xl h-screen mx-auto max-sm:w-full'>
+    <section className='max-w-5xl h-screen mx-auto max-sm:w-full max-sm:p-5'>
       <div className='flex justify-center items-center h-full'>
-        <Card classname='border p-10 min-h-fit w-96 bg-white border-grey shadow-md rounded-md'>
+        <Card classname='border p-10 min-h-fit w-96 bg-white border-grey shadow-lg rounded-md'>
           <div>
-            <div className='text-center text-largerFont'>Login</div>
+            <div className='text-center font-semibold text-largerFont'>
+              Login
+            </div>
             <div className='my-3'>
               <label htmlFor='email'>Email:</label>
               <input
@@ -32,7 +35,13 @@ export default function Login() {
               </Button>
             </div>
             <div className='text-center'>
-              New User? <span>sign Up</span>
+              New User?
+              <span className='text-blue mx-1'>
+                <Link to={'/register'}>Sign Up</Link>
+              </span>
+            </div>
+            <div className='text-center text-blue my-2'>
+              <Link to={'/'}>Home</Link>
             </div>
           </div>
         </Card>
