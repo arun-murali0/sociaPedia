@@ -3,9 +3,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import { Card } from '../../components';
 import { Button } from '../../components';
 import { Link } from 'react-router-dom';
-import FormOne from './multiform/formOne';
-import FormTwo from './multiform/formTwo';
-import FormThree from './multiform/formThree';
+import FormOne from './formOne';
+import FormTwo from './formTwo';
+import FormThree from './formThree';
 import { FormEvent } from 'react';
 
 export default function Register() {
@@ -21,7 +21,13 @@ export default function Register() {
     console.log('submitted', data);
   };
 
-  console.log(isLast);
+  // const handleNext = async () => {
+  //   // const currentSchema = stepSchemas[currentStepIndex];
+  //   // const isValid = await methods.trigger(Object.keys(currentSchema.shape) as any);
+  //   // if (isValid) {
+  //     // next();
+  //   }
+  // };
 
   return (
     <FormProvider {...methods}>
@@ -61,7 +67,7 @@ export default function Register() {
                   <Button
                     type='button'
                     classname='px-5 border-black py-1 bg-black text-white'
-                    onClick={next}
+                    // onClick={handleNext}
                   >
                     Next
                   </Button>

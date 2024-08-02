@@ -2,7 +2,6 @@ import { useFormContext } from 'react-hook-form';
 
 export default function FormThree() {
   const { register } = useFormContext();
-
   return (
     <section>
       <div className='my-2'>
@@ -23,7 +22,12 @@ export default function FormThree() {
       </div>
       <div className='my-2'>
         <label htmlFor='profile'>profile</label>
-        <input type='File' id='profile' className='my-2' />
+        <input
+          type='File'
+          {...register('profile')}
+          id='profile'
+          className='my-2'
+        />
       </div>
     </section>
   );
