@@ -1,16 +1,24 @@
+import { useFormContext } from 'react-hook-form';
+
 export default function FormThree() {
+  const { register } = useFormContext();
+
   return (
     <section>
       <div className='my-2'>
-        <label htmlFor='firstname'>DOB</label>
-        <input type='Date' className='w-full border my-1 p-1' />
+        <label htmlFor='DOB'>DOB</label>
+        <input
+          type='Date'
+          {...register('DOB')}
+          className='w-full border my-1 p-1'
+        />
       </div>
-      <div className='my-2'>
+      <div className='my-2' {...register('gender')}>
         <label htmlFor='gender'>Gender</label>
         <select className='w-full border p-1'>
-          <option>Male</option>
-          <option>Female</option>
-          <option>others</option>
+          <option value={'Male'}>Male</option>
+          <option value={'female'}>Female</option>
+          <option value={'others'}>others</option>
         </select>
       </div>
       <div className='my-2'>
