@@ -1,5 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 
+import { TextField } from '../../components/textField';
+
 interface FormType {
   firstname: string;
   lastname: string;
@@ -11,16 +13,13 @@ export default function FormOne() {
 
   return (
     <section>
-      <div className='my-2'>
-        <label htmlFor='firstname'>firstname</label>
-        <input
-          type='text'
-          {...register('firstname')}
-          placeholder='Enter firstname'
-          id='firstname'
-          className='w-full border my-1 p-1'
-        />
-      </div>
+      <TextField
+        id='firstname'
+        htmlFor='firstname'
+        type='text'
+        placeholder='Enter fisrtname'
+      />
+
       <div className='my-2'>
         <label htmlFor='lastname'>lastname</label>
         <input
