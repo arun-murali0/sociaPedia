@@ -5,7 +5,7 @@ import { ReactNode, FC } from 'react';
 // type
 interface ButtonProps {
   children: ReactNode;
-  onClick?: () => boolean | void;
+  onClick?: () => boolean | Promise<void> | void;
   classname?: string;
   type?: 'submit' | 'reset' | 'button' | undefined;
 }

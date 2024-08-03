@@ -1,33 +1,36 @@
 import { useMultiForm } from '../../hooks/useForm';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { Card } from '../../components';
 import { Button } from '../../components';
 import { Link } from 'react-router-dom';
 import FormOne from './formOne';
 import FormTwo from './formTwo';
 import FormThree from './formThree';
-import { FormEvent } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchemaTypes, registerSchema } from '../../utils/validation';
 
 export default function Register() {
   const { steps, currentStepIndex, currentStep, prev, next, isFirst, isLast } =
     useMultiForm([<FormOne />, <FormTwo />, <FormThree />]);
 
   // hook form API
-  const methods = useForm();
+  const methods = useForm<registerSchemaTypes>({
+    resolver: zodResolver(registerSchema),
+  });
 
-  const onSubmit = (data: any, e: FormEvent) => {
-    e.preventDefault();
-
+  const onSubmit: SubmitHandler<registerSchemaTypes> = (data) => {
     console.log('submitted', data);
   };
 
-  // const handleNext = async () => {
-  //   // const currentSchema = stepSchemas[currentStepIndex];
-  //   // const isValid = await methods.trigger(Object.keys(currentSchema.shape) as any);
-  //   // if (isValid) {
-  //     // next();
-  //   }
-  // };
+  const handleNext = async () => {
+    const currentSchema = steps[currentStepIndex];
+    console.log(methods.getValues());
+    const isValid = await methods.trigger(Object.keys(currentSchema) as any);
+    console.log(isValid);
+    if (isValid) {
+      next();
+    }
+  };
 
   return (
     <FormProvider {...methods}>
@@ -57,17 +60,14 @@ export default function Register() {
                   </Button>
                 )}
                 {isLast ? (
-                  <Button
-                    type='button'
-                    classname='px-5 border-black py-1 bg-black text-white'
-                  >
+                  <Button classname='px-5 border-black py-1 bg-black text-white'>
                     Submit
                   </Button>
                 ) : (
                   <Button
                     type='button'
                     classname='px-5 border-black py-1 bg-black text-white'
-                    // onClick={handleNext}
+                    onClick={handleNext}
                   >
                     Next
                   </Button>

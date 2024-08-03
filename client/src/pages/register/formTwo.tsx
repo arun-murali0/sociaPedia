@@ -1,7 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 
+interface FormType {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export default function FormTwo() {
-  const { register } = useFormContext();
+  const { register } = useFormContext<FormType>();
 
   return (
     <section>
@@ -29,7 +35,7 @@ export default function FormTwo() {
         <label htmlFor='cPassword'>confirm password</label>
         <input
           type='password'
-          {...register('confirm password')}
+          {...register('confirmPassword')}
           id='cPassword'
           placeholder='confirm password'
           className='border w-full my-1 p-1'

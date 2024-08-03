@@ -1,7 +1,16 @@
 import { useFormContext } from 'react-hook-form';
 
+interface FormType {
+  DOB: Date;
+  gender: 'male' | 'female' | 'others';
+  profile: File;
+}
+
 export default function FormThree() {
-  const { register } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<FormType>();
   return (
     <section>
       <div className='my-2'>
@@ -20,6 +29,7 @@ export default function FormThree() {
           <option value={'others'}>others</option>
         </select>
       </div>
+      <div>{errors.gender?.message}</div>
       <div className='my-2'>
         <label htmlFor='profile'>profile</label>
         <input

@@ -1,7 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 
+interface FormType {
+  firstname: string;
+  lastname: string;
+  username: string;
+}
+
 export default function FormOne() {
-  const { register } = useFormContext();
+  const { register } = useFormContext<FormType>();
 
   return (
     <section>
