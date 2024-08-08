@@ -1,8 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 
+enum genderprops {
+  'male',
+  'female',
+  'others',
+}
 interface FormType {
   DOB: Date;
-  gender: 'male' | 'female' | 'others';
+  gender: genderprops;
   profile: File;
 }
 

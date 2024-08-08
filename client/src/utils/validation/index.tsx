@@ -1,6 +1,5 @@
 // zod validation Schema
 import { z } from 'zod';
-const val: string[] = ['male', 'female', 'others'];
 
 const formOneSchema = z.object({
   firstname: z.string().min(1, { message: "firstname shouldn't be empty" }),
@@ -21,12 +20,13 @@ const formTwoSchema = z.object({
 
 const formThreeSchema = z.object({
   DOB: z.string().date().min(1, { message: "shouldn't be empty" }),
-  gender: z.enum(val).optional(),
+  gender: z.enum(['male', 'female', 'others']),
   profilepicture: z.instanceof(File).optional(),
 });
 
-export const registerSchema = formOneSchema
-  .merge(formTwoSchema)
-  .merge(formThreeSchema);
+// for dynamic validation
+export const registerSchema = [formOneSchema, formTwoSchema, formThreeSchema];
 
-export type registerSchemaTypes = z.infer<typeof registerSchema>;
+// infer types
+const Schema = formOneSchema.merge(formTwoSchema).merge(formThreeSchema);
+export type registerSchemaTypes = z.infer<typeof Schema>;
